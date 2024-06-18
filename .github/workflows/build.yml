@@ -1,0 +1,46 @@
+name: Build and push
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    name: Build and push
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v4
+
+        - uses: actions/setup-node@v3
+          with:
+            node-version: 22
+
+        - name: Install pnpm & deps
+          run: |
+            npm i -g pnpm
+            pnpm i
+
+        - name: Generate bundle
+          run: pnpm bundle
+
+        - name: Setup Pages
+          uses: actions/configure-pages@v5
+
+        - name: Upload artifact
+          uses: actions/upload-pages-artifact@v3
+          with:
+            path: "./dist/"
+
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
