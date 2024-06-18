@@ -7,7 +7,7 @@ const version = meta.dependencies["react-devtools-core"].replace(/\^|~/, "");
 await build({
     entryPoints: ["in.js"],
     outfile: "dist/out.js",
-    format: "iife",
+    format: "cjs",
     minify: true,
     bundle: true,
     legalComments: "none",
