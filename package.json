@@ -1,0 +1,13 @@
+{
+    "name": "rdt-bundle",
+    "author": "marshift",
+    "scripts": {
+        "bundle": "node scripts/bundle.mjs"
+    },
+    "devDependencies": {
+        "esbuild": "^0.21.5"
+    },
+    "dependencies": {
+        "react-devtools-core": "^5.2.0"
+    }
+}
