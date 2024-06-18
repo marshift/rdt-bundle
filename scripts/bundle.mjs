@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { build } from "esbuild";
 
-const meta = await readFile("./package.json").then(JSON.parse);
+const meta = await readFile("package.json").then(JSON.parse);
 const version = meta.dependencies["react-devtools-core"].replace(/\^|~/, "");
 
 await build({
